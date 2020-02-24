@@ -1,0 +1,8 @@
+build/
+debug/
+.idea
+vendor/
+
+build/*
+dist/
+src/py_micro.egg-info/

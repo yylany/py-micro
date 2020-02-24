@@ -1,0 +1,22 @@
+syntax = "proto3";
+package user.srv;
+service User {
+    rpc Login (LoginRequest) returns (LoginResponse);
+    rpc Register (RegisterRequest) returns (RegisterResponse);
+}
+
+message LoginRequest {
+    string name = 1; //账号
+    string pwd = 2; //密码
+}
+message LoginResponse {
+    string token = 1; //认证后的秘钥
+}
+
+message RegisterRequest {
+}
+
+message RegisterResponse {
+
+}
+//python -m grpc_tools.protoc --python_out=. --grpc_python_out=. -I.  user_srv.proto
