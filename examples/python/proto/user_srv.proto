@@ -1,5 +1,6 @@
 syntax = "proto3";
 package user.srv;
+option go_package = "proto";
 service User {
     rpc Login (LoginRequest) returns (LoginResponse);
     rpc Register (RegisterRequest) returns (RegisterResponse);
@@ -20,3 +21,4 @@ message RegisterResponse {
 
 }
 //python -m grpc_tools.protoc --python_out=. --grpc_python_out=. -I.  user_srv.proto
+//protoc  --micro_out=.  --go_out=.  user_srv.proto

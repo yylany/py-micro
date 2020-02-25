@@ -10,12 +10,9 @@ from setuptools import setup, find_packages
 
 description = "python micro tool"
 
-with io.open("src/py_micro/__init__.py", "rt", encoding="utf8") as f:
-    version = re.search(r'__version__ = "(.*?)"', f.read()).group(1)
-
 setup(
     name='py_micro',
-    version=version,
+    version="1.0.1",
     author='yyl',
     author_email='1906600192@qq.com',
     # url='',

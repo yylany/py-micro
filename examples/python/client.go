@@ -2,38 +2,42 @@ package main
 
 import (
 	"context"
-	"log"
-	"os"
-	"time"
-
-	"google.golang.org/grpc"
+	"fmt"
+	co "github.com/hashicorp/consul/api"
+	"github.com/micro/go-micro"
+	"github.com/micro/go-micro/service/grpc"
+	"github.com/micro/go-plugins/registry/consul"
 	"python/proto"
 )
 
-const (
-	address     = "localhost:64436"
-	defaultName = "world"
-)
-
 func main() {
-	// Set up a connection to the server.
-	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
-	if err != nil {
-		log.Fatalf("did not connect: %v", err)
-	}
-	defer conn.Close()
-	c := user_srv.NewUserClient(conn)
 
-	// Contact the server and print out its response.
-	name := defaultName
-	if len(os.Args) > 1 {
-		name = os.Args[1]
-	}
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-	defer cancel()
-	r, err := c.Login(ctx, &user_srv.LoginRequest{Name: name, Pwd: "ss"})
+	conf := co.DefaultConfig()
+	conf.Address = "127.0.0.1:8500"
+	con_registry := consul.NewRegistry(consul.Config(conf))
+
+	sers, err := con_registry.GetService("user.srv")
+
+	sers = sers
+
+	service := grpc.NewService(
+		micro.Registry(con_registry),
+	)
+
+	service.Init()
+
+	cl := proto.NewUserService("user.srv", service.Client())
+
+	rsp, err := cl.Login(context.TODO(), &proto.LoginRequest{
+		Name: "cc",
+		Pwd:  "ll",
+	})
+
 	if err != nil {
-		log.Fatalf("could not greet: %v", err)
+		fmt.Println(err)
+		return
 	}
-	log.Printf("Greeting: %s", r.Token)
+
+	fmt.Println(rsp.Token)
+
 }

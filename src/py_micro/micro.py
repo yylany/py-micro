@@ -79,8 +79,12 @@ class Service:
         print("Registering node: {}:{}".format(self.get_mate("server_name"), self.get_mate("server_id")))
         self.service.start()
 
+        def un(signalnum, handler):
+            self.registry.deregister()
+            exit(0)
+
         for sig in [signal.SIGINT, signal.SIGTERM]:
-            signal.signal(sig, self.registry.deregister)
+            signal.signal(sig, un)
 
         while True:
             while True:

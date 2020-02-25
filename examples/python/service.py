@@ -22,10 +22,10 @@ class Inter(grpc.GenericRpcHandler):
 
 if __name__ == '__main__':
     server = py_micro.Service({
-        "server_name": "go.micro.srv.tr",
+        "server_name": "user.srv",
         "server_port": 64436,
         "registry": "consul",
-        "registry_address": "172.22.57.13:8500",
+        "registry_address": "127.0.0.1:8500",
     }, py_micro.Flag(
         name="gp",
         default="cc",
