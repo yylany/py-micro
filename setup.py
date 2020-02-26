@@ -1,11 +1,3 @@
-import glob
-import io
-import sys
-import re
-import os
-
-from setuptools.command.test import test as TestCommand
-from setuptools.command.install import install
 from setuptools import setup, find_packages
 
 description = "python micro tool"
@@ -15,7 +7,7 @@ setup(
     version="1.0.2",
     author='yyl',
     author_email='1906600192@qq.com',
-    # url='',
+    url='https://github.com/yylany/py-micro.git',
     description=description,
     packages=find_packages("src"),
     package_dir={"": "src"},
