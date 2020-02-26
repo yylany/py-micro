@@ -22,7 +22,7 @@ class Inter(grpc.GenericRpcHandler):
 
 if __name__ == '__main__':
     server = py_micro.Service({
-        "server_name": "user.srv",
+        "server_name": "go.micro.srv.ty",
         "server_port": 64436,
         "registry": "consul",
         "registry_address": "127.0.0.1:8500",
@@ -31,7 +31,10 @@ if __name__ == '__main__':
         default="cc",
         env_var="GP_ENV"
     ))
+
     server.addWrapHandler([Inter()])
 
-    user_srv_pb2_grpc.add_UserServicer_to_server(UserDemo(), server.service)
+
+    user_srv_pb2_grpc.add_UserServicer_to_server(UserDemo(), server)
+
     server.run()

@@ -22,6 +22,24 @@ class Flag:
         self.name = name
 
 
+def extract_entity_and_method(k: str):
+    """
+    提取protobuf定义的service名字，以及方法名字
+    例如：
+        /user.srv.User/login -> User,login
+        /User/Login -> User-> Login
+    :param k:/user.srv.User/login类似这种格式
+    :return:
+    """
+    itmes = k.split("/")
+    entity_name = itmes[1]
+    s = entity_name.split(".")
+    if len(s) >= 2:
+        entity_name = s[len(s) - 1]
+
+    return entity_name, itmes[2]
+
+
 class Service:
     def __init__(self, ops: dict = None,
                  *args: Flag
@@ -69,6 +87,35 @@ class Service:
 
     def addWrapHandler(self, generic_rpc_handlers: [grpc.GenericRpcHandler]):
         self.service.add_generic_rpc_handlers(generic_rpc_handlers)
+
+    def add_generic_rpc_handlers(self, generic_handler):
+        """
+        添加实现后的gRPC作为服务提供外部访问
+        :param servicer:实现gRPC接口的对象实例
+        :return:
+        """
+        service_name = self.get_mate("server_name")
+        n_hander = []
+
+        for handler in generic_handler:
+            method_handlers = getattr(generic_handler[0], '_method_handlers')
+            rpc_method_handlers = {}
+
+            entity_name = ""
+            for (k, v) in method_handlers.items():
+                entity_name, name = extract_entity_and_method(k)
+
+                rpc_method_handlers[name] = v
+
+            n_hander.append(handler)
+
+            n_hander.append(
+                grpc.method_handlers_generic_handler(
+                    "{}.{}".format(service_name, entity_name),
+                    rpc_method_handlers)
+            )
+
+        self.service.add_generic_rpc_handlers(n_hander)
 
     def run(self):
         port = self.get_mate("server_port")

@@ -16,7 +16,7 @@ func main() {
 	conf.Address = "127.0.0.1:8500"
 	con_registry := consul.NewRegistry(consul.Config(conf))
 
-	sers, err := con_registry.GetService("user.srv")
+	sers, err := con_registry.GetService("go.micro.srv.ty")
 
 	sers = sers
 
@@ -26,7 +26,7 @@ func main() {
 
 	service.Init()
 
-	cl := proto.NewUserService("user.srv", service.Client())
+	cl := proto.NewUserService("go.micro.srv.ty", service.Client())
 
 	rsp, err := cl.Login(context.TODO(), &proto.LoginRequest{
 		Name: "cc",

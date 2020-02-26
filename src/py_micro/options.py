@@ -50,6 +50,24 @@ def get_open_port():
     return port
 
 
+def get_ip_address():
+    """
+    获取本机ip
+    :return:
+    """
+    # hostname = socket.gethostname()
+    # ip = socket.gethostbyname(hostname)
+
+    # fqdnName = socket.getfqdn(socket.gethostname())
+    # ip = socket.gethostbyname(fqdnName)
+
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(('baidu.com', 0))
+    ip = s.getsockname()[0]
+
+    return ip
+
+
 OPS = {
     "client_request_timeout": ["MICRO_CLIENT_REQUEST_TIMEOUT", 5],
     "client_retries": ["MICRO_CLIENT_RETRIES", 1],
@@ -60,7 +78,7 @@ OPS = {
     "server_name": ["MICRO_SERVER_NAME", "go.micro.srv.example"],
     "server_version": ["MICRO_SERVER_VERSION", " 1.1.0"],
     "server_id": ["MICRO_SERVER_ID", uuid.uuid4()],
-    "server_address": ["MICRO_SERVER_ADDRESS", "127.0.0.1"],
+    "server_address": ["MICRO_SERVER_ADDRESS", get_ip_address()],
     "server_port": ["MICRO_SERVER_PORT", get_open_port()],
     "server_pool_size": ["MICRO_SERVER_POOL_SIZE", 1],
     "registry": ["MICRO_REGISTRY", ""],

@@ -20,7 +20,7 @@ class Consul(Registry):
 
     def register(self):
         check = consul.Check.tcp(self.addr, self.port, self.register_interval, deregister=True)  # 健康检查的ip，端口，检查时间
-        self.c.agent.service.register(self.server_name, f"{self.server_name}-{self.addr}-{self.port}",
+        self.c.agent.service.register(name=self.server_name, service_id=f"{self.server_name}-{self.addr}-{self.port}",
                                       address=self.addr, port=self.port, check=check)  # 注册服务部分
         print(f"注册服务{self.server_name}成功")
 

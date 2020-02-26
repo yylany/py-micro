@@ -12,7 +12,7 @@ description = "python micro tool"
 
 setup(
     name='py_micro',
-    version="1.0.1",
+    version="1.0.2",
     author='yyl',
     author_email='1906600192@qq.com',
     # url='',
