@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 description = "python micro tool"
 
 setup(
-    name='py_micro',
+    name='micro-py',
     version="1.0.2",
     author='yyl',
     author_email='1906600192@qq.com',

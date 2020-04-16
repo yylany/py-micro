@@ -1,7 +1,7 @@
 from proto import user_srv_pb2_grpc
 
 from proto import user_srv_pb2
-import py_micro
+import micro_py
 import grpc
 
 
@@ -21,12 +21,12 @@ class Inter(grpc.GenericRpcHandler):
 
 
 if __name__ == '__main__':
-    server = py_micro.Service({
+    server = micro_py.Service({
         "server_name": "go.micro.srv.ty",
         "server_port": 64436,
         "registry": "consul",
         "registry_address": "127.0.0.1:8500",
-    }, py_micro.Flag(
+    }, micro_py.Flag(
         name="gp",
         default="cc",
         env_var="GP_ENV"

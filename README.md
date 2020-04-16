@@ -1,6 +1,6 @@
-###  py-micro
+###  py-micro 已改名为micro-py
 
-py-micro是一款python的grpc框架，用于与 [go-micro](https://github.com/micro/go-micro) 使用的工具，支持gRPC，go-micro 服务调用
+micro-py是一款python的grpc框架，用于与 [go-micro](https://github.com/micro/go-micro) 使用的工具，支持gRPC，go-micro 服务调用
 
 
 
