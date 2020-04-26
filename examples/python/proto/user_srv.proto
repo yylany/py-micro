@@ -20,5 +20,5 @@ message RegisterRequest {
 message RegisterResponse {
 
 }
-//python -m grpc_tools.protoc --python_out=. --grpc_python_out=. -I.  user_srv.proto
-//protoc  --micro_out=.  --go_out=.  user_srv.proto
+//python -m grpc_tools.protoc --python_out=. --grpc_python_out=. -I.  blockchain_srv.proto
+//protoc  --micro_out=.  --go_out=.  blockchain_srv.proto

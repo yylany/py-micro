@@ -132,13 +132,5 @@ class Service:
 
         for sig in [signal.SIGINT, signal.SIGTERM]:
             signal.signal(sig, un)
-
-        while True:
-            while True:
-                try:
-                    self.registry.register()
-                    break
-                except Exception as e:
-                    print(e)
-                    time.sleep(5)
-            time.sleep(self.get_mate("register_interval") * 1000)
+        self.registry.register()
+        self.service.wait_for_termination()

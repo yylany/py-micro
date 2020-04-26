@@ -55,15 +55,15 @@ def get_ip_address():
     获取本机ip
     :return:
     """
-    # hostname = socket.gethostname()
-    # ip = socket.gethostbyname(hostname)
+    hostname = socket.gethostname()
+    ip = socket.gethostbyname(hostname)
 
     # fqdnName = socket.getfqdn(socket.gethostname())
     # ip = socket.gethostbyname(fqdnName)
 
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.connect(('baidu.com', 0))
-    ip = s.getsockname()[0]
+    # s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    # s.connect(('baidu.com', 0))
+    # ip = s.getsockname()[0]
 
     return ip
 
