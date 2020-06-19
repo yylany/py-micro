@@ -4,7 +4,7 @@ description = "python micro tool"
 
 setup(
     name='micro-py',
-    version="1.0.7",
+    version="1.0.8",
     author='yyl',
     author_email='1906600192@qq.com',
     url='https://github.com/yylany/py-micro.git',
@@ -16,5 +16,6 @@ setup(
         "protobuf==3.10.0",
         "grpcio-tools==1.27.2",
         "python-consul==1.1.0",
+        "APScheduler==3.6.3",
     ],
 )
