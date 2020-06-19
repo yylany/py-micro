@@ -9,3 +9,7 @@ build:
 .PHONY: install
 install:
 	@python setup.py install
+
+.PHONY: push
+push:
+	@python setup.py sdist upload -r pypi

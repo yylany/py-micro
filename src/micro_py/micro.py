@@ -68,9 +68,10 @@ class Service:
             self.registry = registry.NewConsul(
                 mate["server_name"],
                 mate["server_address"],
-                mate["server_port"],
+                int(mate["server_port"]),
                 mate["registry_address"],
-                mate["register_interval"],
+                int(mate["register_interval"]),
+                int(mate["register_ttl"]),
             )
 
         ser = grpc.server(futures.ThreadPoolExecutor(max_workers=mate["server_pool_size"]))
