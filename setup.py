@@ -4,7 +4,7 @@ description = "python micro tool"
 
 setup(
     name='micro-py',
-    version="1.0.8",
+    version="1.0.10",
     author='yyl',
     author_email='1906600192@qq.com',
     url='https://github.com/yylany/py-micro.git',

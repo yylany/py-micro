@@ -61,7 +61,7 @@ class Service:
 
         # 初始化自定义的环境变量参数
         for f in args:
-            mate[f.name] = os.getenv(f.name, f.default)
+            mate[f.name] = os.getenv(f.env_var, f.default)
 
         self.registry = registry.Registry()
         if mate["registry"] == "consul":
@@ -74,7 +74,7 @@ class Service:
                 int(mate["register_ttl"]),
             )
 
-        ser = grpc.server(futures.ThreadPoolExecutor(max_workers=mate["server_pool_size"]))
+        ser = grpc.server(futures.ThreadPoolExecutor(max_workers=int(mate["server_pool_size"])))
         self.service = ser
         self.mate = mate
 
