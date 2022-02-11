@@ -13,7 +13,7 @@ setup(
     package_dir={"": "src"},
     install_requires=[
         "grpcio==1.27.2",
-        "protobuf==3.10.0",
+        "protobuf==3.15.0",
         "grpcio-tools==1.27.2",
         "python-consul==1.1.0",
         "APScheduler==3.6.3",
