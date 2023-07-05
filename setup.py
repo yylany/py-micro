@@ -12,7 +12,7 @@ setup(
     packages=find_packages("src"),
     package_dir={"": "src"},
     install_requires=[
-        "grpcio==1.27.2",
+        "grpcio==1.53.0",
         "protobuf==3.10.0",
         "grpcio-tools==1.27.2",
         "python-consul==1.1.0",
